@@ -8,7 +8,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: sakaidao_php
+        container_name: sakaidao2_php
         volumes:
             - .:/var/www
             - ./docker/php.ini:/usr/local/etc/php/conf.d/local.ini
@@ -19,7 +19,7 @@ services:
 
     nginx:
         image: nginx:latest
-        container_name: sakaidao_nginx
+        container_name: sakaidao2_nginx
         ports:
             - "7071:80"
         volumes:
@@ -32,7 +32,7 @@ services:
 
     mysql:
         image: mysql:8.0
-        container_name: sakaidao_mysql
+        container_name: sakaidao2_mysql
         environment:
             MYSQL_DATABASE: app
             MYSQL_ROOT_PASSWORD: K3DLMcq74aWwbF
@@ -46,7 +46,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: sakaidao_phpmyadmin
+        container_name: sakaidao2_phpmyadmin
         environment:
             PMA_HOST: mysql
             PMA_PORT: 3306
@@ -59,9 +59,9 @@ services:
         build:
             context: ./web3js
             dockerfile: Dockerfile
-        container_name: sakaidao_web3
+        container_name: sakaidao2_web3
         volumes:
-            - ./web3:/usr/src/web3
+            - ./web3js:/usr/src/web3
         ports:
             - "7073:3001"
 
