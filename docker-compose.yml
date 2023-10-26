@@ -55,15 +55,15 @@ services:
         depends_on:
             - mysql
 
-    web3js:
-        build:
-            context: ./web3js
-            dockerfile: Dockerfile
-        container_name: itax_web3
-        volumes:
-            - ./web3:/usr/src/web3
-        ports:
-            - "7082:3001"
+#    web3js:
+#        build:
+#            context: ./web3js
+#            dockerfile: Dockerfile
+#        container_name: itax_web3
+#        volumes:
+#            - ./web3:/usr/src/web3
+#        ports:
+#            - "7082:3001"
 
 volumes:
     mysql_data:
