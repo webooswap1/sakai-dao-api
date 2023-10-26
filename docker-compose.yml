@@ -8,7 +8,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: itax_php
+        container_name: sakaidao_php
         volumes:
             - .:/var/www
             - ./docker/php.ini:/usr/local/etc/php/conf.d/local.ini
@@ -19,7 +19,7 @@ services:
 
     nginx:
         image: nginx:latest
-        container_name: itax_nginx
+        container_name: sakaidao_nginx
         ports:
             - "7080:80"
         volumes:
@@ -32,7 +32,7 @@ services:
 
     mysql:
         image: mysql:8.0
-        container_name: itax_mysql
+        container_name: sakaidao_mysql
         environment:
             MYSQL_DATABASE: app
             MYSQL_ROOT_PASSWORD: K3DLMcq74aWwbF
@@ -46,7 +46,7 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: itax_phpmyadmin
+        container_name: sakaidao_phpmyadmin
         environment:
             PMA_HOST: mysql
             PMA_PORT: 3306
@@ -59,7 +59,7 @@ services:
 #        build:
 #            context: ./web3js
 #            dockerfile: Dockerfile
-#        container_name: itax_web3
+#        container_name: sakaidao_web3
 #        volumes:
 #            - ./web3:/usr/src/web3
 #        ports:
