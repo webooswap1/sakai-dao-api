@@ -13,4 +13,5 @@ Route::get('rewardFromStake',[\App\Http\Controllers\SakaiDAOController::class,'g
 
 // group prefix with /web3
 Route::prefix('web3')->group(function () {
+    Route::get('ping',[\App\Http\Controllers\Web3Controller::class,'ping']);
 });
