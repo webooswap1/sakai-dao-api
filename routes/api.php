@@ -10,7 +10,8 @@ Route::post('proposal',[\App\Http\Controllers\SakaiDAOController::class,'createP
 Route::get('proposal',[\App\Http\Controllers\SakaiDAOController::class,'getProposals']);
 Route::get('rewardFromReferrer',[\App\Http\Controllers\SakaiDAOController::class,'getRewardFromReferrer']);
 Route::get('rewardFromStake',[\App\Http\Controllers\SakaiDAOController::class,'getRewardFromStake']);
-
+Route::post('profile',[\App\Http\Controllers\UtilsController::class,'updateProfile']);
+Route::delete('profile',[\App\Http\Controllers\UtilsController::class,'deleteProfile']);
 // group prefix with /web3
 Route::prefix('web3')->group(function () {
     Route::get('ping',[\App\Http\Controllers\Web3Controller::class,'ping']);
