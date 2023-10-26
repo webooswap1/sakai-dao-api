@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\StakeTypeEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,8 +26,8 @@ class StakeUnstakeRequest extends FormRequest
         return [
             'address' => 'required|string',
             'amount' => 'required|integer',
-            'txHash' => 'required|string',
-            'epoch' => 'required|integer',
+            'txHash' => 'required|string|unique:stakes,txHash',
+            'type' => 'required|string|in:'.StakeTypeEnum::STAKE->value.','.StakeTypeEnum::UNSTAKE->value,
         ];
     }
 }

@@ -2,11 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('ping',function(){
-   return response()->json([
-       'message' => 'pong',
-         'status' => 200
-   ]);
-});
 
-
+Route::get('profile',[\App\Http\Controllers\UtilsController::class,'profile']);

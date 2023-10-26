@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shills', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->string('url');
-            $table->integer('epoch');
-            $table->string('claim_reward_hash')->nullable();
-            $table->string('claim_gas_hash')->nullable();
+            $table->string('total_supply_in_wei')->default('0');
+            $table->string('minimum_vote_in_wei')->default('0');
+            $table->string('current_epoch')->default('0');
             $table->timestamps();
-            $table->dateTime('claim_reward_at')->nullable();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shills');
+        Schema::dropIfExists('configs');
     }
 };

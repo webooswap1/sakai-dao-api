@@ -17,6 +17,5 @@ class Stake extends Model
         'address',
         'amount',
         'txHash',
-        'epoch',
     ];
 }

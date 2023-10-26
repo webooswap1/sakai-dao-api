@@ -3,8 +3,8 @@ namespace App\Enums;
 
 enum StakeTypeEnum: string {
 
-    case STAKE = 'stake';
+    case STAKE = 'STAKE';
 
-    case UNSTAKE = 'unstake';
+    case UNSTAKE = 'UNSTAKE';
 
 }

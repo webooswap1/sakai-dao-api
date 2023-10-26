@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stakes', function (Blueprint $table) {
+        Schema::create('user_balances', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['stake', 'unstake']);
-            $table->string('address');
-            $table->integer('amount');
-            $table->string('txHash');
-            $table->integer('epoch');
+            $table->string('address')->unique();
+            $table->string('balance')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stakes');
+        Schema::dropIfExists('user_balances');
     }
 };
