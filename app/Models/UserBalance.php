@@ -9,6 +9,11 @@ class UserBalance extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'address',
+        'balance',
+    ];
+
     protected $appends = [
         'last_stake_date'
     ];

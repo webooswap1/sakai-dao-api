@@ -9,16 +9,17 @@ class Web3Helper {
         string $contractAddress,
         string $functionName,
         array $functionArgs,
-        string $abi
+        $abi
     )
     {
-        $response = Http::post(env('WEB3_URL').'/callfunction',[
+        $payload = [
             'contract_address' => $contractAddress,
             'rpc_url'          => env('WEB3_RPC'),
             'function_name'    => $functionName,
             'function_args'    => $functionArgs,
-            'abi'              => json_decode($abi),
-        ]);
+            'abi'              => $abi,
+        ];
+        $response = Http::post(env('WEB3_URL').'/callfunction',$payload);
         return $response->json();
     }
 }
