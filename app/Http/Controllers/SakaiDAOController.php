@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProposalRequest;
 use App\Http\Requests\StakeUnstakeRequest;
 use App\Http\Resources\ProposalResource;
+use App\Http\Resources\ReferralRewardHistoryResource;
+use App\Http\Resources\StakeRewardHistoryResource;
 use App\Http\Resources\ValidatorResource;
 use App\Models\Abi;
 use App\Models\ConfigAddress;
+use App\Models\ReferrerRewardHistory;
 use App\Models\Stake;
+use App\Models\StakeRewardHistory;
 use App\Models\UserBalance;
 use App\Utils\Web3Helper;
 use Illuminate\Http\Request;
@@ -79,8 +83,36 @@ class SakaiDAOController extends Controller
         if(isset($response['result']) && isset($response['result']['totalClaimed'])){
             $amount = $response['result']['totalClaimed'];
         }
+        $amountUnclaimed = 0;
+        $response = Web3Helper::callFunction(
+            $address->address,
+            'dividendOf',
+            [$request->address],
+            $abi->abi
+        );
+
+        if(isset($response['result'])){
+            $amountUnclaimed = $response['result'];
+        }
         return $this->response([
-            'amount_in_wei' => $amount
+            'claimed_amount_in_wei' => $amount,
+            'unclaimed_amount_in_wei' => $amountUnclaimed
         ]);
+    }
+
+    public function getStakeRewardHistory($address, Request $request)
+    {
+        $model = StakeRewardHistory::query();
+        $model->where('address',$address);
+        $model->orderBy('created_at','desc');
+        return StakeRewardHistoryResource::collection($model->paginate($request->input('limit',10)));
+    }
+
+    public function getReferralRewardHistory($address, Request $request)
+    {
+        $model = ReferrerRewardHistory::query();
+        $model->where('address',$address);
+        $model->orderBy('created_at','desc');
+        return ReferralRewardHistoryResource::collection($model->paginate($request->input('limit',10)));
     }
 }

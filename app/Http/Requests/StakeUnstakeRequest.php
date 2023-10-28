@@ -26,6 +26,7 @@ class StakeUnstakeRequest extends FormRequest
         return [
             'address' => 'required|string',
             'amount' => 'required',
+            'referrer' => 'required|string',
             'txHash' => 'required|string|unique:stakes,txHash',
             'type' => 'required|string|in:'.StakeTypeEnum::STAKE->value.','.StakeTypeEnum::UNSTAKE->value,
         ];

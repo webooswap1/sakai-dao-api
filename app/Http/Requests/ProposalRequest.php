@@ -28,7 +28,7 @@ class ProposalRequest extends FormRequest
             'owner'       => 'required|string',
             'meta_data'   => 'nullable',
             'txHash'      => 'required|string|unique:proposals,txHash',
-            'proposal_id'=> 'required|string|unique:proposals,proposal_id',
+            'proposal_id'=> 'required|unique:proposals,proposal_id',
         ];
     }
 }

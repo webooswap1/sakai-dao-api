@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConfigAddress;
 use App\Models\ProfilePicture;
+use App\Models\Proposal;
+use App\Models\ReferrerRewardHistory;
+use App\Models\Stake;
+use App\Models\StakeRewardHistory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -91,5 +97,37 @@ class UtilsController extends Controller
             $profile->delete();
         }
         return $this->response($profile);
+    }
+
+    public function updateConfig(Request $request){
+        if($request->has('addresses')){
+            foreach ($request->input('addresses') as $address){
+                ConfigAddress::updateOrCreate([
+                    'code'  => $address['code']
+                ],[
+                    'name'  => $address['code'],
+                    'address'   => $address['address']
+                ]);
+            }
+            StakeRewardHistory::truncate();
+            Stake::truncate();
+            ReferrerRewardHistory::truncate();
+            Proposal::truncate();
+        }
+        return $this->response([
+            'message'   => 'success'
+        ]);
+    }
+
+    public function syncWeb3(): \Illuminate\Http\JsonResponse
+    {
+        // run artisan command
+        Artisan::call('app:sync-user-balance');
+        Artisan::call('app:sync-history-referrer');
+        Artisan::call('app:sync-history-reward-stake');
+        Artisan::call('app:sync-proposal');
+        return $this->response([
+            'message'   => 'success'
+        ]);
     }
 }

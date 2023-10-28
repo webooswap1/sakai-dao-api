@@ -16,7 +16,7 @@ class ProposalResource extends JsonResource
     {
         return [
           ...$this->resource->toArray(),
-          'meta_data' => json_decode($this->resource->meta_data),
+          'meta_data' => ($this->resource->meta_data),
         ];
     }
 }

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stakes', function (Blueprint $table) {
+        Schema::create('referrer_reward_histories', function (Blueprint $table) {
             $table->id();
             $table->string('address');
-            $table->string('referrer');
-            $table->enum('type',['STAKE','UNSTAKE']);
             $table->string('amount');
-            $table->string('txHash');
+            $table->string('last_amount');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stakes');
+        Schema::dropIfExists('referrer_reward_histories');
     }
 };

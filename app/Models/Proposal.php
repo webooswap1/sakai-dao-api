@@ -20,6 +20,6 @@ class Proposal extends Model
     ];
 
     protected $casts = [
-//        'meta_data' => 'json'
+        'meta_data' => 'json'
     ];
 }

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('user_vote_approve')->default('0');
             $table->string('user_vote_reject')->default('0');
             $table->string('total_vote')->default('0');
-            $table->string('total_vote_power')->default('0');
+            $table->string('total_participant')->default('0');
             $table->timestamps();
         });
     }
