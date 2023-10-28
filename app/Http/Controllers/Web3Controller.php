@@ -18,7 +18,6 @@ class Web3Controller extends Controller
         $config = DB::table('configs')->first();
         $this->rpcUrl = $config->rpc_url;
         $this->web3Url = env('WEB3_URL');
-        $this->adminKey = env('WEB3_ADMIN_KEY');
     }
 
     public function ping()
