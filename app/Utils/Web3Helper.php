@@ -21,7 +21,7 @@ class Web3Helper {
             'function_args'    => $functionArgs,
             'abi'              => $abi,
         ];
-        $response = Http::post(env('WEB3_URL').'/callfunction',$payload);
+        $response = Http::timeout(120)->post(env('WEB3_URL').'/callfunction',$payload);
         return $response->json();
     }
 }
