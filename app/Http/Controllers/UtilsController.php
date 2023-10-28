@@ -126,6 +126,7 @@ class UtilsController extends Controller
         Artisan::call('app:sync-history-referrer');
         Artisan::call('app:sync-history-reward-stake');
         Artisan::call('app:sync-proposal');
+        Artisan::call('app:sync-config');
         return $this->response([
             'message'   => 'success'
         ]);

@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('app:sync-config')->everyTenMinutes();
         $schedule->command('app:sync-user-balance')->everyTenMinutes();
         $schedule->command('app:sync-history-referrer')->everyTenMinutes();
         $schedule->command('app:sync-history-reward-stake')->everyTenMinutes();

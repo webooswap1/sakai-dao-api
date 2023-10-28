@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class Web3Controller extends Controller
@@ -14,8 +15,9 @@ class Web3Controller extends Controller
 
     public function __construct()
     {
+        $config = DB::table('configs')->first();
+        $this->rpcUrl = $config->rpc_url;
         $this->web3Url = env('WEB3_URL');
-        $this->rpcUrl = env('WEB3_RPC');
         $this->adminKey = env('WEB3_ADMIN_KEY');
     }
 

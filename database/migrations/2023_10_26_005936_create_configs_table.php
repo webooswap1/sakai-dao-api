@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
+            $table->string('rpc_url')->default('');
             $table->string('total_supply_in_wei')->default('0');
             $table->string('minimum_vote_in_wei')->default('0');
             $table->string('current_epoch')->default('0');

@@ -22,7 +22,7 @@ class UserBalance extends Model
     {
         $stake = Stake::where('address', $this->address)->orderBy('created_at', 'desc')->first();
         if ($stake) {
-            return $stake->created_at;
+            return $stake->created_at->timestamp;
         }
         return null;
     }

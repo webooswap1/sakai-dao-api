@@ -43,6 +43,7 @@ class SyncUserBalance extends Command
                 ],
                 $abi->abi
             );
+
             if(isset($response['result'])) {
                 UserBalance::updateOrCreate([
                     'address' => $user->address

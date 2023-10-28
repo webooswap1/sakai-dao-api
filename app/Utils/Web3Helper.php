@@ -2,6 +2,7 @@
 namespace App\Utils;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class Web3Helper {
@@ -12,9 +13,10 @@ class Web3Helper {
         $abi
     )
     {
+        $config = DB::table('configs')->first();
         $payload = [
             'contract_address' => $contractAddress,
-            'rpc_url'          => env('WEB3_RPC'),
+            'rpc_url'          => $config->rpc_url,
             'function_name'    => $functionName,
             'function_args'    => $functionArgs,
             'abi'              => $abi,
