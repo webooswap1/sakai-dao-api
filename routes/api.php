@@ -21,4 +21,4 @@ Route::prefix('web3')->group(function () {
 });
 
 // Admin Area
-//Route::post('/config',[\App\Http\Controllers\UtilsController::class,'updateConfig']);
+Route::post('/config',[\App\Http\Controllers\UtilsController::class,'updateConfig']);
